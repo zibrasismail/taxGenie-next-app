@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
+import Link from 'next/link'
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
@@ -85,9 +86,17 @@ export default function Registration() {
             </div>
           </form>
         </CardContent>
-        <CardFooter className="flex justify-between">
-          <Button variant="outline">Cancel</Button>
-          <Button type="submit" onClick={handleSubmit}>Register</Button>
+        <CardFooter className="flex flex-col space-y-4">
+          <div className="flex justify-between w-full">
+            <Button variant="outline" onClick={() => router.push('/')}>Cancel</Button>
+            <Button type="submit" onClick={handleSubmit}>Register</Button>
+          </div>
+          <div className="text-center text-sm">
+            Already have an account?{' '}
+            <Link href="/login" className="text-primary hover:underline">
+              Log in
+            </Link>
+          </div>
         </CardFooter>
       </Card>
     </div>

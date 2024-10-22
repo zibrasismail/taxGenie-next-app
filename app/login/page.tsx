@@ -5,7 +5,6 @@ import Link from "next/link"
 import { useRouter } from "next/navigation"
 
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 
@@ -28,8 +27,10 @@ export default function LoginPage() {
       <Link
         href="/register"
         className={cn(
-          buttonVariants({ variant: "ghost" }),
-          "absolute right-4 top-4 md:right-8 md:top-8"
+          "absolute right-4 top-4 md:right-8 md:top-8",
+          "text-sm font-medium text-primary underline-offset-4 hover:underline",
+          "transition-colors duration-200",
+          "hover:text-primary-dark"
         )}
       >
         Create account

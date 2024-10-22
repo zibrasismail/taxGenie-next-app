@@ -30,33 +30,36 @@ export default function DashboardLayout({
   return (
     <div className="flex flex-col min-h-screen">
       <header className="border-b">
-        <div className="flex h-16 items-center px-4">
-          <Sheet open={open} onOpenChange={setOpen}>
-            <SheetTrigger asChild>
-              <Button variant="ghost" className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden">
-                <Menu className="h-6 w-6" />
-                <span className="sr-only">Toggle Menu</span>
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-[300px] sm:w-[400px]">
-              <nav className="flex flex-col space-y-4">
-                {navItems.map((item) => (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`text-sm font-medium ${
-                      pathname === item.href ? 'text-primary' : 'text-muted-foreground'
-                    } transition-colors hover:text-primary`}
-                    onClick={() => setOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                ))}
-              </nav>
-            </SheetContent>
-          </Sheet>
-          <h1 className="text-2xl font-bold">TaxGenie</h1>
-          <nav className="hidden lg:flex items-center space-x-4 lg:space-x-6 mx-6">
+        <div className="flex h-16 items-center px-4 justify-between">
+          <div className="flex items-center">
+            <Sheet open={open} onOpenChange={setOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0 lg:hidden">
+                  <Menu className="h-6 w-6" />
+                  <span className="sr-only">Toggle Menu</span>
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="left" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col space-y-4">
+                  {navItems.map((item) => (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`text-sm font-medium ${
+                        pathname === item.href ? 'text-primary' : 'text-muted-foreground'
+                      } transition-colors hover:text-primary`}
+                      onClick={() => setOpen(false)}
+                    >
+                      {item.label}
+                    </Link>
+                  ))}
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <h1 className="text-2xl font-bold">TaxGenie</h1>
+          </div>
+          
+          <nav className="hidden lg:flex items-center space-x-4 lg:space-x-6 absolute left-1/2 transform -translate-x-1/2">
             {navItems.map((item) => (
               <Link
                 key={item.href}
@@ -69,7 +72,8 @@ export default function DashboardLayout({
               </Link>
             ))}
           </nav>
-          <div className="ml-auto flex items-center space-x-4">
+          
+          <div className="flex items-center space-x-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button className="flex items-center space-x-2">
@@ -83,14 +87,9 @@ export default function DashboardLayout({
               <DropdownMenuContent align="end">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>Profile</DropdownMenuItem>
-                <DropdownMenuItem>Billing</DropdownMenuItem>
-                <DropdownMenuItem>Team</DropdownMenuItem>
-                <DropdownMenuItem>Subscription</DropdownMenuItem>
+                <DropdownMenuItem><Link href="/dashboard/settings">Profile</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>
-                  <Link href="/">Log out</Link>
-                </DropdownMenuItem>
+                <DropdownMenuItem><Link href="/">Log out</Link></DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>
           </div>
